@@ -1,6 +1,6 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WizardsStatisticCardComponent } from './statistic-card.component'
+import { WizardsStatisticCardComponent } from './statistic-card.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,48 +13,73 @@ class MockActivatedRoute {
   queryParams = of({});
 }
 
-export default {
+const meta: Meta<WizardsStatisticCardComponent> = {
   title: 'Statistic-card',
   component: WizardsStatisticCardComponent,
+  tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CurrencyPipe, FormsModule, NzButtonModule, NzIconModule, ReactiveFormsModule, WizardsStatisticCardComponent, RouterModule, HttpClientModule, BrowserAnimationsModule],
-      providers: [
-        { provide: ActivatedRoute, useClass: MockActivatedRoute }
+      imports: [
+        CurrencyPipe,
+        FormsModule,
+        NzButtonModule,
+        NzIconModule,
+        ReactiveFormsModule,
+        WizardsStatisticCardComponent,
+        RouterModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
       ],
+      providers: [{ provide: ActivatedRoute, useClass: MockActivatedRoute }],
     }),
   ],
   argTypes: {
     statisticTable: {
       description: 'An array of objects containing value, info, label and icon',
-      control: {
-        type: 'object',
-      },
+      control: { type: 'object' },
       table: {
-        type: { summary: 'Array<{ value: { value: number | string; isMoney?: boolean }, info?: string, label: string, icon: string }>' },
+        type: {
+          summary:
+            'Array<{ value: { value: number | string; isMoney?: boolean }, info?: string, label: string, icon: string }>',
+        },
       },
     },
-  }
-} as Meta<WizardsStatisticCardComponent>;
-
-const Template: Story<WizardsStatisticCardComponent> = (args: WizardsStatisticCardComponent) => {
-    return {
-      template: `
-        <wiz-statistic-card
-        [statisticTable]="statisticTable">
-        </wiz-statistic-card>
-      `,
-      props: args,
-    };
-  };
-
-export const Primary = Template.bind({});
-Primary.args = {
-  statisticTable: [
-    { label: 'Testowy statistic-card', icon: 'up', value: { value: 'testowo 1', isMoney: false }},
-    { label: 'Drugi Testowy statistic-card', icon: 'down', value: { value: 'TesttestTest', isMoney: false }},
-    { label: 'Trzeci Testowy statistic-card', icon: 'left', value: { value: 'testowa druga kwota', isMoney: false }},
-    { label: 'Czwarty Testowy statistic-card', icon: 'right', value: { value: 'testowo 2312', isMoney: false }},
-  ],
+  },
+  args: {
+    statisticTable: [
+      {
+        label: 'Testowy statistic-card',
+        icon: 'up',
+        value: { value: 'testowo 1', isMoney: false },
+      },
+      {
+        label: 'Drugi Testowy statistic-card',
+        icon: 'down',
+        value: { value: 'TesttestTest', isMoney: false },
+      },
+      {
+        label: 'Trzeci Testowy statistic-card',
+        icon: 'left',
+        value: { value: 'testowa druga kwota', isMoney: false },
+      },
+      {
+        label: 'Czwarty Testowy statistic-card',
+        icon: 'right',
+        value: { value: 'testowo 2312', isMoney: false },
+      },
+    ],
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <wiz-statistic-card [statisticTable]="statisticTable">
+      </wiz-statistic-card>
+    `,
+  }),
 };
 
+export default meta;
+
+type Story = StoryObj<WizardsStatisticCardComponent>;
+
+export const Primary: Story = {};
