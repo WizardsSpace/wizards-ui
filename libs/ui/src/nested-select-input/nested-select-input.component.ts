@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import {
   ControlContainer,
-  FormGroupDirective,
+  FormGroupName,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -16,7 +16,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
-export interface SelectOptions {
+interface SelectOptions {
   label: string | number | null;
   value: string | number | boolean | null;
 }
@@ -31,14 +31,12 @@ export interface SelectOptions {
     FormsModule,
     ReactiveFormsModule,
   ],
-  selector: 'wiz-select-input',
-  templateUrl: './select-input.component.html',
-  styleUrls: ['./select-input.component.scss'],
-  viewProviders: [
-    { provide: ControlContainer, useExisting: FormGroupDirective },
-  ],
+  selector: 'wiz-nested-select-input',
+  templateUrl: './nested-select-input.component.html',
+  styleUrls: ['./nested-select-input.component.scss'],
+  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupName }],
 })
-export class WizardsSelectComponent {
+export class WizardsNestedSelectComponent {
   @Input() allowClear = false;
   @Input() allowSearch = false;
   @Input() controlName!: string;
