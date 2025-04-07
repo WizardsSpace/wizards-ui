@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { ControlContainer, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, input, Input } from '@angular/core';
+import {
+  ControlContainer,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -19,9 +23,8 @@ import { AddHTMLAttributeDirective } from './attribute.directive';
   ],
   selector: 'wiz-input-text',
   templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss']
+  styleUrls: ['./input-text.component.scss'],
 })
-
 export class WizardsInputComponent {
   @Input() controlName!: string;
   @Input() disabled = false;
@@ -31,12 +34,12 @@ export class WizardsInputComponent {
   @Input() type = 'text';
   @Input() prefix?: string;
   @Input() suffix?: string;
-  @Input() fullWidth? = true
-  @Input() inputSize: 'large' | 'small' | 'default' = 'default'
+  @Input() fullWidth? = true;
+  @Input() inputSize: 'large' | 'small' | 'default' = 'default';
   @Input() cy?: string;
   @Input() errorIfEmail = false;
   @Input() errorIfShort?: number;
   @Input() errorIfToLong?: number;
 
-  constructor(public controlContainer: ControlContainer) { }
+  constructor(public controlContainer: ControlContainer) {}
 }
